@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="img/logo.jpg" type="image/x-icon">
+  </head>
+  <body>
+    <!-- SEPETİM -->
+
+    <div class="payment-container">
+      <div class="payment-sepet">
+        <div>
+          <h3>Toplam :</h3>
+          <div class="toplam"></div>
+        </div>
+      </div>
+
+      <form action="">
+        <div class="row">
+          <div class="col">
+            <h3 class="baslik">FATURA ADRESİ</h3>
+
+            <div class="inputBox">
+              <span>Adınız :</span>
+              <input type="text" placeholder="Burak Akbulut" />
+            </div>
+            <div class="inputBox">
+              <span>E-mail :</span>
+              <input type="email" placeholder="example@example.com" />
+            </div>
+            <div class="inputBox">
+              <span>Adres :</span>
+              <input type="text" placeholder="mahalle-sokak-no" />
+            </div>
+            <div class="inputBox">
+              <span>Şehir :</span>
+              <input type="text" placeholder="İstanbul" />
+            </div>
+
+            <div class="flex">
+              <div class="inputBox">
+                <span>Ülke :</span>
+                <input type="text" placeholder="Türkiye" />
+              </div>
+              <div class="inputBox">
+                <span>Posta kodu :</span>
+                <input type="text" placeholder="123 456" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <h3 class="baslik">ödeme</h3>
+
+            <div class="inputBox">
+              <span>Kabul edilen kartlar :</span>
+              <img src="img/card_img.png" alt="" />
+            </div>
+            <div class="inputBox">
+              <span>Karttaki isim :</span>
+              <input type="text" placeholder="Burak Akbulut" />
+            </div>
+            <div class="inputBox">
+              <span>Kredi Kartı Numarası :</span>
+              <input type="number" placeholder="1111-2222-3333-4444" />
+            </div>
+            <div class="inputBox">
+              <span>Geçerlilik ayı :</span>
+              <input type="text" placeholder="ocak" />
+            </div>
+
+            <div class="flex">
+              <div class="inputBox">
+                <span>Geçerlilik yılı :</span>
+                <input type="number" placeholder="2027" />
+              </div>
+              <div class="inputBox">
+                <span>CVV :</span>
+                <input type="text" placeholder="1234" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <input type="submit" value="Ödemeyi Tamamla" class="submit-btn" />
+      </form>
+    </div>
+
+    <script>
+      // Local Storage'dan klonları al
+      let klonlar = localStorage.getItem("klonlar");
+      let toplam = document.querySelector(".toplam");
+      toplam.textContent = JSON.parse(localStorage.getItem("toplam"));
+      let odemeTamamla = document.querySelector(".submit-btn");
+
+      odemeTamamla.addEventListener("click", () => {
+        localStorage.clear();
+      });
+
+      if (klonlar) {
+        // Klonları dizi olarak çözümle
+        klonlar = JSON.parse(klonlar);
+
+        // Klonları payment-sepet içine ekleyin
+        let paymentSepet = document.querySelector(".payment-sepet");
+
+        klonlar.forEach((klon) => {
+          // HTML içeriği olarak ekle
+          paymentSepet.innerHTML += klon;
+        });
+      }
+    </script>
+  </body>
+</html>
